@@ -6,14 +6,14 @@ Nous aurons 4 applications qui sont: configuration,statistique,contact et restau
 
 ## configuration app
 
-    ```
+    
         
         #ce models nous contient les info sur le restaurant
         #text1 correspond a Fast Delivery dans le template dans le fichier index.html
         #text2 a Fresh Food dans le fichier index.html
         #texte3 a 24/7 Support dans le fichier index.html
         #text_accueil a We Love Delicious Foods!
-
+    ```
         class Presentation(models.Model):
             """Model definition for Presentation."""
 
@@ -84,13 +84,14 @@ Nous aurons 4 applications qui sont: configuration,statistique,contact et restau
 
 ## contact app
 
-    ```
+   
 
 #cette classe concerne la nouvelle page contact qui doit etre creer
 #elle nous permettra de contacter le resto 
 #si le message est lu dans la partie admin il coche simplement le champ status pour le mettre a true
 #dans la partie la partie admin ce champ sera rendu editable. Cette pour facilité la lecture de message
 
+    ```
         class Message(models.Model):
             """Model definition for Message."""
             nom = models.CharField(max_length=250)
