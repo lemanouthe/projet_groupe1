@@ -33,15 +33,12 @@ import re
         text1 = models.CharField(max_length=255)
         text2 = models.CharField(max_length=255)
         text3 = models.CharField(max_length=255)
-        """
-        a ajouter
         working_hour = models.ManyToManyField('WorkingHour',related_name='working_config')
-        """
         license_site = models.CharField(max_length=255)
         active = models.BooleanField(default=False)
         date_add = models.DateTimeField(auto_now_add=True)
         date_udp =  models.DateTimeField(auto_now =True)
- """ A ajouter
+
         @property
         def open_hour(self):
             jour = now().strftime('%A')
@@ -51,7 +48,7 @@ import re
                     hour = '{} - {}'.format(str(w.start_hour),str(w.end_hour))
             print(jour,' : ',hour)
             return '{} : {}'.format(jour,hour)
-    """
+
         class Meta:
             """Meta definition for Presentation."""
 
@@ -84,36 +81,36 @@ import re
         def __str__(self):
             """Unicode representation of About."""
             pass
-    """
-    model des reseau sociaux a jouter
+
 
     class Social(models.Model):
-    # TODO: Define fields here
-    choice=[('FB','facebook'),('TW','twitter'),('INS','instagram'),('GOO','google')]
-    name = models.CharField(max_length=100,choices=choice)
-    lien = models.URLField(max_length=200)
-    status = models.BooleanField(default=True)
-    date_add = models.DateTimeField(auto_now_add=True)
-    date_upd = models.DateTimeField(auto_now=True)
-    @property
-    def font(self):
-        if self.name == 'FB':
-            font = 'icon-facebook'
-        elif self.name == 'TW':
-            font ='icon-twitter'
-        elif self.name == 'INS':
-            font ='icon-instagram"'
-        elif self.name == 'GOO':
-            font ='icon-google-plus'
-        return font
-    class Meta:
-        verbose_name = "Social"
-        verbose_name_plural = "Socials"
+        # TODO: Define fields here
+        choice=[('FB','facebook'),('TW','twitter'),('INS','instagram'),('GOO','google')]
+        name = models.CharField(max_length=100,choices=choice)
+        lien = models.URLField(max_length=200)
+        status = models.BooleanField(default=True)
+        date_add = models.DateTimeField(auto_now_add=True)
+        date_upd = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return '{}'.format(self.name)
+        @property
+        def font(self):
+            if self.name == 'FB':
+                font = 'icon-facebook'
+            elif self.name == 'TW':
+                font ='icon-twitter'
+            elif self.name == 'INS':
+                font ='icon-instagram"'
+            elif self.name == 'GOO':
+                font ='icon-google-plus'
+            return font
+        class Meta:
+            verbose_name = "Social"
+            verbose_name_plural = "Socials"
 
-    """
+        def __str__(self):
+            return '{}'.format(self.name)
+
+
 
 ```
 - [ ] class des horaires fausse tu ne peut pas geré sa comme sa c'est trois class pour faire les horaires
@@ -124,19 +121,61 @@ import re
 ```python
     #cette classe concerne l horaire du resto dans le footer de la page
     class Horaire(models.Model):
-        jours = models.CharField(max_length=50)
-        heure = models.CharField(max_length=50)
-        status = models.BooleanField(default=True)
-        date_add = models.DateTimeField(auto_now_add=True)
-        date_udp =  models.DateTimeField(auto_now =True)
-        def __str__(self):
-        return self.jours
+    """Model definition for Horaire."""
+
+        nom_horaire_du_jours = models.CharField(max_length=255)
+        date_add =  models.DateTimeField(auto_now_add=True)
+        date_update =  models.DateTimeField(auto_now=True)
+        status =  models.BooleanField(default=True)
 
         class Meta:
-            db_table = ''
-            managed = True
+            """Meta definition for Horaire."""
+
             verbose_name = 'Horaire'
             verbose_name_plural = 'Horaires'
+
+        def __str__(self):
+            """Unicode representation of Horaire."""
+            return self.nom_horaire_du_jours
+
+
+    class Jour(models.Model):
+        """Model definition for Jour."""
+
+        jours = models.CharField(max_length=255)
+        horaire = models.ForeignKey('Horaire', on_delete=models.CASCADE, related_name='jour_horaire')
+        date_add =  models.DateTimeField(auto_now_add=True)
+        date_update =  models.DateTimeField(auto_now=True)
+        status =  models.BooleanField(default=True)
+
+        class Meta:
+            """Meta definition for Jour."""
+
+            verbose_name = 'Jour'
+            verbose_name_plural = 'Jours'
+
+        def __str__(self):
+            """Unicode representation of Jour."""
+            return self.jours
+
+    class Heure(models.Model):
+        """Model definition for Heure."""
+
+        heures = models.CharField(max_length=255)
+        jours = models.ForeignKey('Jour', on_delete=models.CASCADE, related_name='Heure_jour')
+        date_add =  models.DateTimeField(auto_now_add=True)
+        date_update =  models.DateTimeField(auto_now=True)
+        status =  models.BooleanField(default=True)
+
+        class Meta:
+            """Meta definition for Heure."""
+
+            verbose_name = 'Heure'
+            verbose_name_plural = 'Heures'
+
+        def __str__(self):
+            """Unicode representation of Heure."""
+            return self.heures
             
 ```
 
