@@ -171,16 +171,37 @@ class WorkingHour(models.Model):
     def __str__(self):
         return '{}  {} - {}'.format(self.jour,self.start_hour,self.end_hour)
 
+class ReserveConfiguration(models.Model):
+    """Model definition for ReserveConfiguration."""
+
+    titre_formulaire = models.CharField(max_length=255)
+    sous_titre_formulaire = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='resrvation_back')
+    active = models.BooleanField(default=False)
+    date_add = models.DateTimeField(auto_now_add=True)
+    date_udp =  models.DateTimeField(auto_now =True)
+
+    
+    # TODO: Define fields here
+
+    class Meta:
+        """Meta definition for ReserveConfiguration."""
+
+        verbose_name = 'ReserveConfiguration'
+        verbose_name_plural = 'ReserveConfigurations'
+
 ```
+
+
 
 ## contact app
 
    
 
-#cette classe concerne la nouvelle page contact qui doit etre creer
-#elle nous permettra de contacter le resto 
-#si le message est lu dans la partie admin il coche simplement le champ status pour le mettre a true
-#dans la partie la partie admin ce champ sera rendu editable. Cette pour facilité la lecture de message
+    #cette classe concerne la nouvelle page contact qui doit etre creer
+    #elle nous permettra de contacter le resto 
+    #si le message est lu dans la partie admin il coche simplement le champ status pour le mettre a true
+    #dans la partie la partie admin ce champ sera rendu editable. Cette pour facilité la lecture de message
 
 ```python
     class Message(models.Model):
@@ -220,7 +241,7 @@ class WorkingHour(models.Model):
     
 ```
 
-## restaurant app
+## menu app
 
 ```python
         
