@@ -1,6 +1,6 @@
 # projet_groupe1
 
-Nous aurons 4 applications qui sont: configuration,statistique,contact et restaurant.
+Nous aurons 6 applications qui sont: configuration,statistique,contact,menu,reservation,team.
 ## pages a creer:
     contact.html
 
@@ -13,7 +13,7 @@ Nous aurons 4 applications qui sont: configuration,statistique,contact et restau
         #text2 a Fresh Food dans le fichier index.html
         #texte3 a 24/7 Support dans le fichier index.html
         #text_accueil a We Love Delicious Foods!
-    ```
+        ```
         class Presentation(models.Model):
             """Model definition for Presentation."""
 
@@ -68,7 +68,8 @@ Nous aurons 4 applications qui sont: configuration,statistique,contact et restau
 
         class Horaire(models.Model):
             jours = models.CharField(max_length=50)
-            heure = models.CharField(max_length=50)
+            heure_start = models.CharField(max_length=255)
+            heure_fin = models.CharField(max_length=255)
             status = models.BooleanField(default=True)
             date_add = models.DateTimeField(auto_now_add=True)
             date_udp =  models.DateTimeField(auto_now =True)
@@ -80,18 +81,74 @@ Nous aurons 4 applications qui sont: configuration,statistique,contact et restau
                 managed = True
                 verbose_name = 'Horaire'
                 verbose_name_plural = 'Horaires'
-    ```
+
+        class Icon(models.Model):
+            """Model definition for Icon."""
+
+            nom = models.CharField(max_length=255)
+            date_add =  models.DateTimeField(auto_now_add=True)
+            date_update =  models.DateTimeField(auto_now=True)
+            status =  models.BooleanField(default=True)
+
+            class Meta:
+                """Meta definition for Icon."""
+
+                verbose_name = 'Icon'
+                verbose_name_plural = 'Icons'
+
+            def __str__(self):
+                """Unicode representation of Icon."""
+                return self.nom
+        
+        class Temoignage(models.Model):
+            nom_temoin = models.CharField(max_length=160)
+            commentaire = models.TextField()
+            image = models.ImageField(upload_to='image_temoin', )
+            job_temoin = models.CharField(max_length=160)
+            date_add =  models.DateTimeField(auto_now_add=True)
+            date_update =  models.DateTimeField(auto_now=True)
+            status =  models.BooleanField(default=True)
+            
+            def __str__(self):
+                return self.nom
+
+            class Meta:
+                verbose_name = 'Temoignage'
+                verbose_name_plural = 'Temoignages'
+    
+        class ReserveConfiguration(models.Model):
+            """Model definition for ReserveConfiguration."""
+
+            titre_formulaire = models.CharField(max_length=255)
+            sous_titre_formulaire = models.CharField(max_length=255)
+            image = models.ImageField(upload_to='resrvation_back')
+            active = models.BooleanField(default=False)
+            date_add = models.DateTimeField(auto_now_add=True)
+            date_udp =  models.DateTimeField(auto_now =True)
+
+            
+            # TODO: Define fields here
+
+            class Meta:
+                """Meta definition for ReserveConfiguration."""
+
+                verbose_name = 'ReserveConfiguration'
+                verbose_name_plural = 'ReserveConfigurations'
+
+        ```
+
+
 
 ## contact app
 
    
 
-#cette classe concerne la nouvelle page contact qui doit etre creer
-#elle nous permettra de contacter le resto 
-#si le message est lu dans la partie admin il coche simplement le champ status pour le mettre a true
-#dans la partie la partie admin ce champ sera rendu editable. Cette pour facilité la lecture de message
+    #cette classe concerne la nouvelle page contact qui doit etre creer
+    #elle nous permettra de contacter le resto 
+    #si le message est lu dans la partie admin il coche simplement le champ status pour le mettre a true
+    #dans la partie la partie admin ce champ sera rendu editable. Cette pour facilité la lecture de message
 
-    ```
+        ```
         class Message(models.Model):
             """Model definition for Message."""
             nom = models.CharField(max_length=250)
@@ -116,6 +173,7 @@ Nous aurons 4 applications qui sont: configuration,statistique,contact et restau
 
         class Newsletter(models.Model):
             email = models.EmailField()
+            description = models.CharField(max_length=255)
             status = models.BooleanField(default=True)
             date_add = models.DateTimeField(auto_now_add=True)
             date_upd = models.DateTimeField(auto_now=True)
@@ -127,11 +185,11 @@ Nous aurons 4 applications qui sont: configuration,statistique,contact et restau
                 verbose_name_plural = 'Newsletters'
         
         
-    ```
+        ```
 
-## restaurant app
+## menu app
 
-    ```
+        ```
             
         class Category(models.Model):
             nom_categorie =  models.CharField(max_length=255)
@@ -188,8 +246,40 @@ Nous aurons 4 applications qui sont: configuration,statistique,contact et restau
                 verbose_name_plural = 'Plats'
                 
                 
+ 
 
-        #cette classe concerne les postes de nos cuisinier ou chef 
+        
+        ```
+
+## statistique app
+
+    ```
+    class InfoUser(models.Model):
+    """Model definition for InfoUser."""
+
+    page_visiter = models.CharField(max_length=255)
+    ip_adresse = models.IPAddressField()
+    localisation = models.CharField(max_length=255)
+    date_add =  models.DateTimeField(auto_now_add=True)
+    date_update =  models.DateTimeField(auto_now=True)
+    status =  models.BooleanField(default=True)
+
+    class Meta:
+        """Meta definition for InfoUser."""
+
+        verbose_name = 'InfoUser'
+        verbose_name_plural = 'InfoUsers'
+
+    def __str__(self):
+        """Unicode representation of InfoUser."""
+        pass
+
+    ```
+
+## team app
+
+        ```
+    #cette classe concerne les postes de nos cuisinier ou chef 
         class Poste(models.Model):
             nom_poste = models.CharField(max_length=160)
             date_add =  models.DateTimeField(auto_now_add=True)
@@ -219,8 +309,11 @@ Nous aurons 4 applications qui sont: configuration,statistique,contact et restau
             class Meta:
                 verbose_name = 'Cuisinier'
                 verbose_name_plural = 'Cuisiniers'
-
-
+        ```
+    
+## reseration app
+    
+        ```
         #cette classe va servir a dire si le visiteur veut reserver et qu il n ya pas de 
         #de place disponible alors fais sa ou fais si.
         #1place == 1personne
@@ -265,45 +358,4 @@ Nous aurons 4 applications qui sont: configuration,statistique,contact et restau
             class Meta:
                 verbose_name = 'Reservation'
                 verbose_name_plural = 'Reservations'
-                
-        #ici le champs par defaut comme metier des temoins est client 
-
-        class Temoignage(models.Model):
-            nom = models.CharField(max_length=160)
-            commentaire = models.TextField()
-            date_add =  models.DateTimeField(auto_now_add=True)
-            date_update =  models.DateTimeField(auto_now=True)
-            status =  models.BooleanField(default=True)
-            
-            def __str__(self):
-                return self.nom
-
-            class Meta:
-                verbose_name = 'Temoignage'
-                verbose_name_plural = 'Temoignages'
-    ```
-
-## statistique app
-
-    ```
-    class InfoUser(models.Model):
-    """Model definition for InfoUser."""
-
-    page_visiter = models.CharField(max_length=255)
-    ip_adresse = models.IPAddressField()
-    localisation = models.CharField(max_length=255)
-    date_add =  models.DateTimeField(auto_now_add=True)
-    date_update =  models.DateTimeField(auto_now=True)
-    status =  models.BooleanField(default=True)
-
-    class Meta:
-        """Meta definition for InfoUser."""
-
-        verbose_name = 'InfoUser'
-        verbose_name_plural = 'InfoUsers'
-
-    def __str__(self):
-        """Unicode representation of InfoUser."""
-        pass
-
-    ```
+        ```
