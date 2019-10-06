@@ -2,7 +2,6 @@ from django.db import models
 from django.utils.timezone import now
 from datetime import datetime, date, time
 import re
-from configuration.models import *
 
 # Create your models here.
 #cette classe concerne la reservation

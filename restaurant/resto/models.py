@@ -86,8 +86,8 @@ class Personnel(models.Model):
         return self.nom+ " " + self.prenom
 
     class Meta:
-        verbose_name = 'Cuisinier'
-        verbose_name_plural = 'Cuisiniers'
+        verbose_name = 'Personnel'
+        verbose_name_plural = 'Personnels'
 
 
 #cette classe va servir a dire si le visiteur veut reserver et qu il n ya pas de 

@@ -4,6 +4,7 @@ from .models import Plat,Poste,Ingredient,Personnel,Place,Category
 from random import randint
 from django.http import	JsonResponse
 import faker
+
 class PlatViewset(viewsets.ModelViewSet):
     
     serializer_class = PlatSerializer
@@ -25,7 +26,6 @@ class PlaceViewset(viewsets.ModelViewSet):
     serializer_class = PlaceSerializer
     queryset = Place.objects.all()
 class IngredientViewset(viewsets.ModelViewSet):
-
     serializer_class = IngredientSerializer
     queryset = Ingredient.objects.all()
 
@@ -43,4 +43,15 @@ def giveIngredient(request):
         for cp in range(0,randint(1,5)):
             pl.ingredient.add(ingredient[randint(0,149)])
         pl.save()
+    return JsonResponse({'succees':True})
+
+def giveSocial(request):
+    from configuration.models import Social    
+    sociaux = Social.objects.filter(status=True)
+    personnes = Personnel.objects.filter(status=True)
+
+    for prs in personnes:
+        for sc in range(0,randint(1,3)):
+            prs.social.add(sociaux[randint(0,3)])
+        prs.save()
     return JsonResponse({'succees':True})
