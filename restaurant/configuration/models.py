@@ -45,7 +45,7 @@ class Presentation(models.Model):
     text3 = models.CharField(max_length=255)
     working_hour = models.ManyToManyField('WorkingHour',related_name='working_config')
     license_site = models.CharField(max_length=255)
-    active = models.BooleanField(default=False)
+    status = models.BooleanField(default=False)
     date_add = models.DateTimeField(auto_now_add=True)
     date_udp =  models.DateTimeField(auto_now =True)
 
@@ -78,7 +78,7 @@ class About(models.Model):
     nom = models.CharField(max_length=255)
     description = models.TextField()
     image = models.ImageField(upload_to='image_about', )
-    active = models.BooleanField(default=False)
+    status = models.BooleanField(default=False)
     date_add = models.DateTimeField(auto_now_add=True)
     date_udp =  models.DateTimeField(auto_now =True)
 
@@ -126,7 +126,7 @@ class ReserveConfig(models.Model):
     titre = models.CharField(max_length=255)
     sous_titre = models.CharField(max_length=255)
     image = models.ImageField(upload_to='resrvation')
-    active = models.BooleanField(default=False)
+    status = models.BooleanField(default=False)
     date_add = models.DateTimeField(auto_now_add=True)
     date_udp =  models.DateTimeField(auto_now =True)
 
