@@ -37,6 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'django_admin_generator',
+    'django_seed',
+    'rest_framework.authtoken',
+    'clientel.apps.ClientelConfig',
+    'configuration.apps.ConfigurationConfig',
+    'contact.apps.ContactConfig',
+    'resto.apps.RestoConfig',
 ]
 
 MIDDLEWARE = [

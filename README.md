@@ -113,75 +113,8 @@ import re
 
 
 ```
-- [ ] class des horaires fausse tu ne peut pas geré sa comme sa c'est trois class pour faire les horaires
-- [ ] besoin de creer le model jour 
-- [ ] besoin de cree le model heure
-- [ ] besoin de cree le model horaire
-- [ ] model pour les reseau sociau
 ```python
     #cette classe concerne l horaire du resto dans le footer de la page
-    class Horaire(models.Model):
-    """Model definition for Horaire."""
-
-        nom_horaire_du_jours = models.CharField(max_length=255)
-        date_add =  models.DateTimeField(auto_now_add=True)
-        date_update =  models.DateTimeField(auto_now=True)
-        status =  models.BooleanField(default=True)
-
-        class Meta:
-            """Meta definition for Horaire."""
-
-            verbose_name = 'Horaire'
-            verbose_name_plural = 'Horaires'
-
-        def __str__(self):
-            """Unicode representation of Horaire."""
-            return self.nom_horaire_du_jours
-
-
-    class Jour(models.Model):
-        """Model definition for Jour."""
-
-        jours = models.CharField(max_length=255)
-        horaire = models.ForeignKey('Horaire', on_delete=models.CASCADE, related_name='jour_horaire')
-        date_add =  models.DateTimeField(auto_now_add=True)
-        date_update =  models.DateTimeField(auto_now=True)
-        status =  models.BooleanField(default=True)
-
-        class Meta:
-            """Meta definition for Jour."""
-
-            verbose_name = 'Jour'
-            verbose_name_plural = 'Jours'
-
-        def __str__(self):
-            """Unicode representation of Jour."""
-            return self.jours
-
-    class Heure(models.Model):
-        """Model definition for Heure."""
-
-        heures = models.CharField(max_length=255)
-        jours = models.ForeignKey('Jour', on_delete=models.CASCADE, related_name='Heure_jour')
-        date_add =  models.DateTimeField(auto_now_add=True)
-        date_update =  models.DateTimeField(auto_now=True)
-        status =  models.BooleanField(default=True)
-
-        class Meta:
-            """Meta definition for Heure."""
-
-            verbose_name = 'Heure'
-            verbose_name_plural = 'Heures'
-
-        def __str__(self):
-            """Unicode representation of Heure."""
-            return self.heures
-            
-```
-
-#### exemple des trois table
-- notez la troisieme modification a ete faite dans le model presentation plus haut
-```python
 class Day(models.Model):
     # TODO: Define fields here
     jour = models.CharField(max_length=50)
@@ -209,6 +142,11 @@ class WorkingHour(models.Model):
 
     def __str__(self):
         return '{}  {} - {}'.format(self.jour,self.start_hour,self.end_hour)
+
+            
+```
+
+```python
 
 class ReserveConfiguration(models.Model):
     """Model definition for ReserveConfiguration."""
