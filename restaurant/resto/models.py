@@ -65,14 +65,14 @@ class Poste(models.Model):
     status =  models.BooleanField(default=True)
         
     def __str__(self):
-        return self.nom_poste
+        return self.nom
 
     class Meta:
         verbose_name = 'Poste'
         verbose_name_plural = 'Postes'
 
 
-class personnel(models.Model):
+class Personnel(models.Model):
     nom = models.CharField(max_length=160)
     prenom = models.CharField(max_length=160)
     photo = models.ImageField(upload_to='resto/personnel')
