@@ -58,13 +58,19 @@ def giveSocial(request):
 
 
 #dynamisation des config
-from configuration.models import Presentation
+from configuration.models import Presentation, ReserveConfig, About
 from django.shortcuts import render, redirect
 
-data = Presentation.objects.filter(status=True)
+
+present = Presentation.objects.filter(status=True)
+reservat = ReserveConfig.objects.filter(status=True)
+about = About.objects.filter(status=True)
+
 
 data = {
-    'data': data
+    'present': present,
+    'reservat': reservat,
+    'about': about,
 }
 
 def index(request):

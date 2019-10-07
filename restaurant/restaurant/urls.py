@@ -25,7 +25,7 @@ urlpatterns = [
     path('client/',include('clientel.urls')),
     path('config/',include('configuration.urls')),
     path('contact/',include('contact.urls')),
-    path('resto/',include('resto.urls')),  
+    path('restorant/',include('resto.urls')),  
     path('reservation/', include('clientel.urls')), 
 ]
 

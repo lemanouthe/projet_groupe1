@@ -12,7 +12,7 @@ class TemoignageViewset(viewsets.ModelViewSet):
     
 #gestion de configuration
 from django.shortcuts import render, redirect
-from configuration.models import  ReserveConfig, Day
+from configuration.models import  ReserveConfig
 
 reservConf = ReserveConfig.objects.filter(status=True)
 
@@ -23,4 +23,3 @@ data = {
 
 def reservations(request):
     return render(request, 'pages/clientele/reservation.html', data)
-    
