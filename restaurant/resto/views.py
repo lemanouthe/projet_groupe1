@@ -55,3 +55,17 @@ def giveSocial(request):
             prs.social.add(sociaux[randint(0,3)])
         prs.save()
     return JsonResponse({'succees':True})
+
+
+#dynamisation des config
+from configuration.models import Presentation
+from django.shortcuts import render, redirect
+
+data = Presentation.objects.filter(status=True)
+
+data = {
+    'data': data
+}
+
+def index(request):
+    return render(request, 'pages/resto/index.html', data)

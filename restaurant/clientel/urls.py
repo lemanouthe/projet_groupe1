@@ -8,7 +8,10 @@ router = DefaultRouter()
 router.register(r'reservation',ReservationViewset,base_name='reserve')
 router.register(r'temoignage',TemoignageViewset,base_name='temoignages')
 
+from . import views
+
 urlpatterns = [
+    path('', views.reservations )
 ]
 
 urlpatterns += router.urls

@@ -10,3 +10,17 @@ class TemoignageViewset(viewsets.ModelViewSet):
     serializer_class = TemoignageSerializer
     queryset = Temoignage.objects.filter(status=True)
     
+#gestion de configuration
+from django.shortcuts import render, redirect
+from configuration.models import  ReserveConfig, Day
+
+reservConf = ReserveConfig.objects.filter(status=True)
+
+
+data = {
+    'reservConf': reservConf,
+}
+
+def reservations(request):
+    return render(request, 'pages/clientele/reservation.html', data)
+    
