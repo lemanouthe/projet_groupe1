@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    "rest_framework_api_key",
     'django_admin_generator',
     'django_seed',
     'rest_framework.authtoken',
@@ -120,6 +121,11 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+#########################################
+#   API KEY AND DRF EXTENSION CONFIG    #
+#                                       #
+#########################################
 
 
 # Static files (CSS, JavaScript, Images)
