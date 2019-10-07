@@ -55,3 +55,6 @@ def giveSocial(request):
             prs.social.add(sociaux[randint(0,3)])
         prs.save()
     return JsonResponse({'succees':True})
+
+def menu(request):
+    return render(request, 'pages/resto/menu.html')

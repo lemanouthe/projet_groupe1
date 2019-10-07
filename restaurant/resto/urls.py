@@ -10,8 +10,13 @@ router.register(r'ingredients', IngredientViewset, basename='ingredient')
 router.register(r'postes', PosteViewset, basename='poste')
 router.register(r'personnels', PersonnelViewset, basename='personnel')
 
+from . import views
+
+app_name='resto'
 
 urlpatterns = [
-    path('fake',giveSocial,name='fake')
+    path('fake',giveSocial,name='fake'),
+    path('', views.index, name='index'),
+    path('menu', views.menu, name='menu'),    
 ]
 urlpatterns += router.urls
