@@ -9,9 +9,9 @@ router.register(r'reservation',ReservationViewset,base_name='reserve')
 router.register(r'temoignage',TemoignageViewset,base_name='temoignages')
 
 from . import views
-
+app_name='clientel'
 urlpatterns = [
-    path('', views.reservations )
+    path('', views.reservations, name='reservation')
 ]
 
 urlpatterns += router.urls

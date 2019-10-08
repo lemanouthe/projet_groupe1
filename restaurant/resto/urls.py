@@ -16,6 +16,9 @@ app_name='resto'
 
 urlpatterns = [
     path('fake',giveSocial,name='fake'),
-    path('', views.index, name='index'),
+    path('restaurant/', views.index, name='index'),
+    path('menu/', views.menu, name='menu'),
+    path('special/', views.special, name='special'),
+    path('team/', views.team, name='team'),
 ]
 urlpatterns += router.urls

@@ -60,6 +60,7 @@ def giveSocial(request):
 #dynamisation des config
 from configuration.models import Presentation, ReserveConfig, About
 from django.shortcuts import render, redirect
+from django.template import RequestContext
 
 
 present = Presentation.objects.filter(status=True)
@@ -74,4 +75,13 @@ data = {
 }
 
 def index(request):
-    return render(request, 'pages/resto/index.html', data)
+    return render(request, 'pages/resto/index.html', data, context=RequestContext(request))
+
+def menu(request):
+    return render(request, 'pages/resto/menu.html')
+
+def special(request):
+    return render(request, 'pages/resto/special_dishes.html', {'present': present})
+
+def team(request):
+    return render(request, 'pages/resto/team.html')
