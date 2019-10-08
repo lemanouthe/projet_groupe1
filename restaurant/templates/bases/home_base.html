@@ -32,6 +32,28 @@
     <!-- Modernizr JS for IE8 support of HTML5 elements and media queries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 
+    <style>
+    .pace {
+        -webkit-pointer-events: none;
+        pointer-events: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        }
+    .pace-inactive {
+        display: none;
+        }
+    .pace .pace-progress {
+        background: #af63de;
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        right: 100%;
+        width: 100%;
+        height: 2px;
+        } 
+    </style>
+
 </head>
 <body data-spy="scroll" data-target="#navbar" class="static-layout">
 	<div id="side-nav" class="sidenav">
@@ -67,7 +89,7 @@
     </div>
 
 <div id="canvas-overlay"></div>
-	<div class="boxed-page">
+	<div class="boxed-page" id="my-app">
 		<nav id="navbar-header" class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand navbar-brand-center d-flex align-items-center p-0 only-mobile" href="/">
@@ -205,7 +227,7 @@
 	<script src="/static/vendor/select2/select2.min.js "></script>
 	<script src="/static/vendor/owlcarousel/owl.carousel.min.js"></script>
 	<script src="https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js"></script>
-	<script src="/static/vendor/stellar/jquery.stellar.js" type="text/javascript" charset="utf-8"></script>
+	{% comment %} <script src="/static/vendor/stellar/jquery.stellar.js" type="text/javascript" charset="utf-8"></script> {% endcomment %}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
 
 	<!-- Main JS -->
@@ -220,14 +242,32 @@
         new Vue({
             el: '#my-app',
             data: {
-                special: 'Specialties',
-                our: 'Our Menu',
-                message : 'app message',
+                name: '',
+                email: '',
+                phone: '',
+                date: '',
+                time: '',
+                person: '',
+                options: [
+                    { text: '1', value: '1' },
+                    { text: '2', value: '2' },
+                    { text: '3', value: '3' },
+                    { text: '4', value: '4' },
+                    { text: '5', value: '5' }
+                ],
+                message: '',
             },
             components: {
-                'my-compo': httpVueLoader('my-compo.vue')
+                'my-compo': httpVueLoader('/static/components/my-compo.vue'),
+                'team-compo': httpVueLoader('/static/components/special.vue'),
+                'menu-compo': httpVueLoader('/static/components/menu.vue'),
             },
             delimiters: ["${", "}"],
+            methods: {
+                getuser: function() {
+                    axios.post()
+                }
+            },
         });
     </script>
 </body>

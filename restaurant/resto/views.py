@@ -7,7 +7,6 @@ from django.shortcuts import render
 import faker
 
 class PlatViewset(viewsets.ModelViewSet):
-    
     serializer_class = PlatSerializer
     queryset = Plat.objects.all()
 class PosteViewset(viewsets.ModelViewSet):
@@ -57,5 +56,11 @@ def giveSocial(request):
         prs.save()
     return JsonResponse({'succees':True})
 
+def home(request):
+    return render(request, 'pages/resto/index.html')
+
 def menu(request):
     return render(request, 'pages/resto/menu.html')
+
+def team(request):
+    return render(request, 'pages/resto/team.html')

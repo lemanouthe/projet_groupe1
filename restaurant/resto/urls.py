@@ -1,7 +1,7 @@
 from .views import PlatViewset,CategoryViewset,PlaceViewset,IngredientViewset,PosteViewset,PersonnelViewset
 from rest_framework.routers import DefaultRouter
 from .views import giveIngredient,giveSocial
-from django.urls import path
+from django.urls import path, include
 
 router = DefaultRouter()
 router.register(r'plats', PlatViewset, basename='plat')
@@ -17,7 +17,8 @@ app_name='resto'
 
 urlpatterns = [
     path('fake',giveSocial,name='fake'),
-    # path('', views.index, name='index'),
-    path('menu', views.menu, name='menu'),    
+    path('home', views.home, name='home'),
+    path('menus', views.menu, name='menu'),
+    path('team', views.team, name='team'),           
 ]
 urlpatterns += router.urls
