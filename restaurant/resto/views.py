@@ -3,6 +3,7 @@ from .serializer import PlatSerializer,PosteSerializer,IngredientSerializer,Pers
 from .models import Plat,Poste,Ingredient,Personnel,Place,Category
 from random import randint
 from django.http import	JsonResponse
+from django.shortcuts import render
 import faker
 
 class PlatViewset(viewsets.ModelViewSet):

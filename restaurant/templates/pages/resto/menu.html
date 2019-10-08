@@ -3,108 +3,30 @@
 
 {% block content %}
 <section id="gtco-menu" class="section-padding">
+    <div id="my-app">
         <div class="container">
             <div class="section-content">
                 <div class="row mb-5">
                     <div class="col-md-12">
                         <div class="heading-section text-center">
                             <span class="subheading">
-                                Specialties
+                                ${ special }
                             </span>
                             <h2>
-                                Our Menu
+                                ${ our }
                             </h2>
                         </div>  
                     </div>
                 </div>
                 <div class="row">
-                    <div id="app">
-                        <menu></menu>
-                        <menu></menu>
-                        <menu></menu>
-                    </div>
+                    <my-compo></my-compo>
+                    <my-compo></my-compo>
+                    <my-compo></my-compo>
                 </div>
             </div>
         </div>
+    </div>
     </section>
 
-    <script src="/static/js/view.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-        Vue.component('menu', {
-            //props: ['item'],
-            template: `<div class="col-lg-4 menu-wrap">
-                        <div class="heading-menu">
-                            <h3 class="text-center mb-5">Breakfast</h3>
-                        </div>
-                        <div class="menus d-flex align-items-center">
-                            <div class="menu-img rounded-circle">
-                                <img class="img-fluid" src="/static/img/breakfast-1.jpg" alt="">
-                            </div>
-                            <div class="text-wrap">
-                                <div class="row align-items-start">
-                                    <div class="col-8">
-                                        <h4>Egg Sandwich</h4>
-                                    </div>
-                                    <div class="col-4">
-                                        <h4 class="text-muted menu-price">$30</h4>
-                                    </div>
-                                </div>
-                                <p>Meat Ball, Mie</p>
-                            </div>
-                        </div>
-                        <div class="menus d-flex align-items-center">
-                            <div class="menu-img rounded-circle">
-                                <img class="img-fluid" src="/static/img/breakfast-1.jpg" alt="">
-                            </div>
-                            <div class="text-wrap">
-                                <div class="row align-items-start">
-                                    <div class="col-8">
-                                        <h4>Egg Sandwich</h4>
-                                    </div>
-                                    <div class="col-4">
-                                        <h4 class="text-muted menu-price">$30</h4>
-                                    </div>
-                                </div>
-                                <p>Meat Ball, Mie</p>
-                            </div>
-                        </div>
-                        <div class="menus d-flex align-items-center">
-                            <div class="menu-img rounded-circle">
-                                <img class="img-fluid" src="/static/img/breakfast-1.jpg" alt="">
-                            </div>
-                            <div class="text-wrap">
-                                <div class="row align-items-start">
-                                    <div class="col-8">
-                                        <h4>Egg Sandwich</h4>
-                                    </div>
-                                    <div class="col-4">
-                                        <h4 class="text-muted menu-price">$30</h4>
-                                    </div>
-                                </div>
-                                <p>Meat Ball, Mie</p>
-                            </div>
-                        </div>
-                    </div>`,
-            delimiters: ["${", "}"],
-        })
-
-        var app = new Vue({
-            el: '#app',
-            data: {
-                // users: [],
-            },
-            delimiters: ["${", "}"],
-            mounted() {
-                this.getuser()
-            },
-            methods: {
-               
-                hello: function() {
-                    console.log('hello')
-                },
-            },
-        });
-    </script>
 {% endblock content %}
     
