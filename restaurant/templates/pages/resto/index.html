@@ -465,7 +465,16 @@
                 </div>
             </div>
         </section>
-        <!-- End of Team Section -->		<!-- Reservation Section -->
+        <!-- End of Team Section -->	
+        <br>
+        <div id="app">
+            <test-component
+            :message="message"
+            >
+        </test-component>
+        </div>
+        <br>
+        <!-- Reservation Section -->
         <section id="gtco-reservation" class="bg-fixed bg-white section-padding overlay" style="background-image: url(/static/img/reservation-bg.jpg);">
             <div class="container">
                 <div class="row">
@@ -539,3 +548,39 @@
         </section>
 {% endblock content %}
     
+
+{% block javascript %}
+<script src="/static/js/vue.js" ></script>
+<script src='/static/js/httpVueLoader.js' ></script>
+<script src="/static/js/axios.js" ></script>
+<script src="/static/js/user_token.js"></script>
+<script>
+        /*let composant = axios.get('/static/js/test.Vue')
+            .then((result)=>result.data)
+            .catch((err)=>console.log(err))
+*/
+        //httpVueLoader.register(Vue, composant.data);
+        //console.log(composant.then((result)=>result))
+        //console.log(composant.resolved)
+        //test=httpVueLoader('/static/js/','test')
+        //console.log('test')
+        //console.log(test())
+        let avoir_token = new Tokenify('localhost:8000')
+        let token = avoir_token.token()
+        console.log(token)
+        httpVueLoader.register(Vue,'http://localhost:8000/static/js/test-component.vue');
+        let vue = new Vue({
+            el: '#app',
+            component : [
+                'test-component',
+            ],
+            data:{
+                message:'mon message pour '
+            },
+            })
+        console.log('ok\r\n')
+        // console.log(httpVueLoader.httpRequest('http://localhost:8000/static/js/test.Vue'))
+</script>
+
+
+{% endblock javascript %}   

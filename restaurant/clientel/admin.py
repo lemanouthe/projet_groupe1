@@ -26,7 +26,6 @@ class ReservationAdmin(admin.ModelAdmin):
         'date_add',
         'date_update',
         'status',
-        'id',
         'nom',
         'email',
         'numero',
