@@ -94,13 +94,12 @@ def giveDay(request):
 
 ################### JINJA views #######################
 
-def home(request):
+def index(request):
     return render(request,'pages/resto/index.html')
-def home(request):
-    return render(request, 'pages/resto/index.html')
-
 def menu(request):
     return render(request, 'pages/resto/menu.html')
 
 def team(request):
     return render(request, 'pages/resto/team.html')
+def special(request):
+    return render(request,'pages/resto/index.html')
