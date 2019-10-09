@@ -1,7 +1,9 @@
 from django.db import models
 from django.utils.timezone import now
+from django.contrib.auth.models import User
 from datetime import datetime, date, time
 import re
+from resto.models import Plat
 
 # Create your models here.
 #cette classe concerne la reservation
@@ -15,6 +17,8 @@ class Reservation(models.Model):
         date = models.DateField()
         heure = models.TimeField()
         personne = models.IntegerField()
+        plat = models.ForeignKey(Plat,on_delete=models.DO_NOTHING,related_name='plat_reserver')
+        message = models.TextField(null=True)
         date_add =  models.DateTimeField(auto_now_add=True)
         date_update =  models.DateTimeField(auto_now=True)
         status =  models.BooleanField(default=True)

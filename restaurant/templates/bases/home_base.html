@@ -28,12 +28,49 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="/static/css/style.min.css">
-
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+<script>
+        $(document).ready(function() {
+            var Body = $('body');
+            Body.addClass('preloader-site');
+        });
+        $(window).load(function() {
+            $('.preloader-wrapper').fadeOut();
+            $('body').removeClass('preloader-site');
+        });
+</script>
     <!-- Modernizr JS for IE8 support of HTML5 elements and media queries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 
+    <style>
+    .pace {
+        -webkit-pointer-events: none;
+        pointer-events: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        }
+    .pace-inactive {
+        display: none;
+        }
+    .pace .pace-progress {
+        background: #af63de;
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        right: 100%;
+        width: 100%;
+        height: 2px;
+        } 
+    </style>
+
 </head>
 <body data-spy="scroll" data-target="#navbar" class="static-layout">
+        <div class="preloader-wrapper">
+                <div class="preloader">
+                    <img src="/static/img/preloader.gif" alt="NILA">
+                </div>
+            </div>
 	<div id="side-nav" class="sidenav">
         <a href="javascript:void(0)" id="side-nav-close">&times;</a>
 
@@ -51,7 +88,6 @@
 	<a href="javascript:void(0)" id="side-search-close">&times;</a>
         <div class="sidenav-content">
             <form action="">
-
                 <div class="input-group md-form form-sm form-2 pl-0">
                 <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search">
                 <div class="input-group-append">
@@ -68,7 +104,7 @@
     </div>
 
 <div id="canvas-overlay"></div>
-	<div class="boxed-page">
+	<div class="boxed-page" id="my-app">
 		<nav id="navbar-header" class="navbar navbar-expand-lg">
     <div class="container">
         {% for item in presentation %}
@@ -120,17 +156,10 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="{% url 'clientel:reservation' %}">Reservation</a>
+                        <a class="nav-link" href="{% url 'reservation' %}">Reservation</a>
                     </li>
                 </div>
-                <li class="nav-item">
-                    <a id="side-search-open" class="nav-link" href="#">
-                        <span class="lnr lnr-magnifier"></span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+            </div>
         </nav>
         
         {% block content %}
@@ -210,17 +239,57 @@
 </footer>	
 
 	<!-- External JS -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 	<script src="/static/vendor/bootstrap/popper.min.js"></script>
 	<script src="/static/vendor/bootstrap/bootstrap.min.js"></script>
 	<script src="/static/vendor/select2/select2.min.js "></script>
 	<script src="/static/vendor/owlcarousel/owl.carousel.min.js"></script>
-	<script src="https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js"></script>
-	<script src="/static/vendor/stellar/jquery.stellar.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js"></script>
+    <script src="/static/vendor/stellar/jquery.stellar.js" type="text/javascript" charset="utf-8"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
 
 	<!-- Main JS -->
 	<script src="/static/js/app.min.js "></script>
+
+    <script src="/static/js/view.js"></script>
+    <script src="/static/js/axios.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/http-vue-loader@1.4.1/src/httpVueLoader.min.js"></script>
+
+
+    <script>
+        new Vue({
+            el: '#my-app',
+            data: {
+                plats: [],
+            },
+            components: {
+                'my-compo': httpVueLoader('/static/components/my-compo.vue'),
+                'team-compo': httpVueLoader('/static/components/special.vue'),
+                'menu-compo': httpVueLoader('/static/components/menu.vue'),
+                'dishes1-compo': httpVueLoader('/static/components/dishes1.vue'),
+                'dishes2-compo': httpVueLoader('/static/components/dishes2.vue'),
+            },
+            delimiters: ["${", "}"],
+            mounted() {
+                this.getplats()
+            },
+            methods: {
+                getplats: function() {
+                    axios.get('http://127.0.0.1:8000/plats/')
+                        .then(response => {
+                            console.log(response.data)
+                            this.plats = response.data
+                            
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        })
+                },
+            },
+        });
+    </script>
+    {% block javascript %}
+    {% endblock %}
 </body>
 </html>

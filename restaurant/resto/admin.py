@@ -12,12 +12,6 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'nom', 'date_add', 'date_update', 'status')
     list_filter = (
         'date_add',
-        'date_update',
-        'status',
-        'id',
-        'nom',
-        'date_add',
-        'date_update',
         'status',
     )
 
@@ -27,12 +21,6 @@ class IngredientAdmin(admin.ModelAdmin):
     list_display = ('id', 'nom', 'date_add', 'date_update', 'status')
     list_filter = (
         'date_add',
-        'date_update',
-        'status',
-        'id',
-        'nom',
-        'date_add',
-        'date_update',
         'status',
     )
 
@@ -46,7 +34,6 @@ class PlatAdmin(admin.ModelAdmin):
         'prix',
         'image',
         'speciale',
-        'today',
         'date_add',
         'date_update',
         'status',
@@ -54,19 +41,7 @@ class PlatAdmin(admin.ModelAdmin):
     list_filter = (
         'categorie',
         'speciale',
-        'today',
         'date_add',
-        'date_update',
-        'status',
-        'id',
-        'categorie',
-        'nom',
-        'prix',
-        'image',
-        'speciale',
-        'today',
-        'date_add',
-        'date_update',
         'status',
     )
     raw_id_fields = ('ingredient',)
@@ -77,12 +52,7 @@ class PosteAdmin(admin.ModelAdmin):
     list_display = ('id', 'nom', 'date_add', 'date_update', 'status')
     list_filter = (
         'date_add',
-        'date_update',
-        'status',
-        'id',
-        'nom',
-        'date_add',
-        'date_update',
+
         'status',
     )
 
@@ -102,15 +72,7 @@ class personnelAdmin(admin.ModelAdmin):
     list_filter = (
         'poste',
         'date_add',
-        'date_update',
-        'status',
-        'id',
-        'nom',
-        'prenom',
-        'photo',
-        'poste',
-        'date_add',
-        'date_update',
+        
         'status',
     )
     raw_id_fields = ('social',)
@@ -128,7 +90,6 @@ class PlaceAdmin(admin.ModelAdmin):
     list_filter = (
         'date_add',
         'date_update',
-        'id',
         'nb_place_disponible',
         'nb_place_total',
         'date_add',
