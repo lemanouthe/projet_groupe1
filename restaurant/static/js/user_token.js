@@ -1,23 +1,21 @@
 class Tokenify{
     static access=null;
     static refresh=null;
-    static baseUrl=null;
-    constructor(base_url){
+    constructor(){
         this.username='admin'
         this.password = 'admin'
-        Tokenify.baseUrl=base_url
         
     }
     token(refresh_token=null){
         if (refresh_token != null){
             axios({
-                url:'/api/refresh/',
+                url:'http://localhost:8000/api/refresh/',
                 method:'POST',
-                baseURL:Tokenify.baseUrl,
                 headers: {'refresh': 'Bearer '+refresh_token},
             })
             .then((response) => {
                 Tokenify.access=response.data.access
+                console.log('token if')
                 console.log(response)
                 return response
             }).catch((error)=>{
@@ -26,12 +24,13 @@ class Tokenify{
             })
         }else if(Tokenify.refresh!=null) {
             axios({
-                url:'/api/refresh/',
+                url:'http://localhost:8000/api/refresh/',
                 method:'POST',
-                baseURL:Tokenify.baseUrl,
                 headers: {'refresh': 'Bearer '+Tokenify.refresh},
             })
             .then((response) => {
+                console.log('token eslse if')
+                console.log(response)
                 Tokenify.access=response.data.access
                 console.log(response)
                 return response
@@ -47,7 +46,7 @@ class Tokenify{
     get_token(){
         if (this.username !=null && this.password != null){
             axios({
-                url:'/api/token/',
+                url:'http://localhost:8000/api/token/',
                 method:'POST',
                 baseURL:Tokenify.baseUrl,
                 data: {
@@ -56,6 +55,7 @@ class Tokenify{
                     },
             })
             .then((response) => {
+                console.log('get')
                 console.log(response)
                 Tokenify.access=response.data.access
                 Tokenify.refresh=response.data.refresh
@@ -69,21 +69,22 @@ class Tokenify{
             return false
         }
     }
-    get(url,method,data){
+    get(url,method,data=null){
         try {
                 axios({
                     url:url,
                     method:method,
                     baseURL:Tokenify.baseUrl,
                     data:data,
-                    
                 })
                 .then((result)=>{
-
+                    console.log('get')
+                    console.log(result)
+                    return result.data
                 })
-
+                .catch((err)=>err)
         }catch{
-
+            console.log('erreur')
         }
 
     }

@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated,IsAdminUser,IsAuthenticatedOrReadOnly,BasePermission,SAFE_METHODS
+# from rest_framework.permissions import IsAuthenticated,IsAdminUser,IsAuthenticatedOrReadOnly,BasePermission,SAFE_METHODS
 from .serializer import PlatSerializer,PosteSerializer,IngredientSerializer,PersonnelSerializer,CategorySerializer,PlaceSerializer,UserSerializer
 from .models import Plat,Poste,Ingredient,Personnel,Place,Category
 from django.contrib.auth.models import User
@@ -9,48 +9,48 @@ from rest_framework import filters
 from django.shortcuts import render
 import faker
 
-class ReadOnly(BasePermission):
-    def has_permission(self, request, view):
-        return request.method in SAFE_METHODS
+# class ReadOnly(BasePermission):
+#     def has_permission(self, request, view):
+#         return request.method in SAFE_METHODS
 class DynamicSearchFilter(filters.SearchFilter):
     def get_search_fields(self, view, request):
         return request.GET.getlist('search_fields', [])
 
 class UserCreate(viewsets.ModelViewSet):
     filter_backends = (DynamicSearchFilter,)
-    permission_classes = [IsAdminUser|ReadOnly]
+    # permission_classes = [IsAdminUser|ReadOnly]
     serializer_class=UserSerializer
     def get_queryset(self):
         queryset = User.objects.filter()
         return queryset
 class PlatViewset(viewsets.ModelViewSet):
     filter_backends = (DynamicSearchFilter,)
-    permission_classes = [IsAuthenticated|ReadOnly]
+    # permission_classes = [IsAuthenticated|ReadOnly]
     serializer_class = PlatSerializer
     queryset = Plat.objects.all()
 class PosteViewset(viewsets.ModelViewSet):
     filter_backends = (DynamicSearchFilter,)
-    permission_classes = [IsAdminUser|ReadOnly]
+    # permission_classes = [IsAdminUser|ReadOnly]
     serializer_class = PosteSerializer
     queryset = Poste.objects.all()
 class CategoryViewset(viewsets.ModelViewSet):
     filter_backends = (DynamicSearchFilter,)
-    permission_classes = [IsAdminUser|ReadOnly]
+    # permission_classes = [IsAdminUser|ReadOnly]
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
 class PersonnelViewset(viewsets.ModelViewSet):
     filter_backends = (DynamicSearchFilter,)
-    permission_classes = [IsAdminUser|ReadOnly]
+    # permission_classes = [IsAdminUser|ReadOnly]
     serializer_class = PersonnelSerializer
     queryset = Personnel.objects.all()
 class PlaceViewset(viewsets.ModelViewSet):
     filter_backends = (DynamicSearchFilter,)
-    permission_classes = [IsAuthenticated|ReadOnly]
+    # permission_classes = [IsAuthenticated|ReadOnly]
     serializer_class = PlaceSerializer
     queryset = Place.objects.all()
 class IngredientViewset(viewsets.ModelViewSet):
     filter_backends = (DynamicSearchFilter,)
-    permission_classes = [IsAuthenticated|ReadOnly]
+    # permission_classes = [IsAuthenticated|ReadOnly]
     serializer_class = IngredientSerializer
     queryset = Ingredient.objects.all()
 

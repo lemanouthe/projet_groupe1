@@ -565,9 +565,15 @@
         //test=httpVueLoader('/static/js/','test')
         //console.log('test')
         //console.log(test())
-        let avoir_token = new Tokenify('localhost:8000')
+        let avoir_token = new Tokenify('http://127.0.0.1:8000/')
+        avoir_token.get_token()
         let token = avoir_token.token()
+        let result = avoir_token.get('http://localhost:8000/resto/plats','get')
         console.log(token)
+        console.log('===================================\r\n')
+        console.log(result)
+        let tok = avoir_token.get_token()
+        console.log('tok',tok)
         httpVueLoader.register(Vue,'http://localhost:8000/static/js/test-component.vue');
         let vue = new Vue({
             el: '#app',
