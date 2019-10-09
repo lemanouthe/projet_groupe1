@@ -37,16 +37,10 @@ class TemoignageAdmin(admin.ModelAdmin):
     )
     list_filter = (
         'date_add',
-        'date_update',
+        
         'status',
-        'id',
-        'nom',
-        'commentaire',
-        'image',
         'job',
-        'date_add',
-        'date_update',
-        'status',
+        
     )
 
 

@@ -12,11 +12,6 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'nom', 'date_add', 'date_update', 'status')
     list_filter = (
         'date_add',
-        'date_update',
-        'status',
-        'nom',
-        'date_add',
-        'date_update',
         'status',
     )
 
@@ -26,11 +21,6 @@ class IngredientAdmin(admin.ModelAdmin):
     list_display = ('id', 'nom', 'date_add', 'date_update', 'status')
     list_filter = (
         'date_add',
-        'date_update',
-        'status',
-        'nom',
-        'date_add',
-        'date_update',
         'status',
     )
 
@@ -52,13 +42,6 @@ class PlatAdmin(admin.ModelAdmin):
         'categorie',
         'speciale',
         'date_add',
-        'date_update',
-        'status',
-        'categorie',
-        'nom',
-        'speciale',
-        'date_add',
-        'date_update',
         'status',
     )
     raw_id_fields = ('ingredient',)
@@ -69,11 +52,7 @@ class PosteAdmin(admin.ModelAdmin):
     list_display = ('id', 'nom', 'date_add', 'date_update', 'status')
     list_filter = (
         'date_add',
-        'date_update',
-        'status',
-        'nom',
-        'date_add',
-        'date_update',
+
         'status',
     )
 
@@ -93,11 +72,7 @@ class personnelAdmin(admin.ModelAdmin):
     list_filter = (
         'poste',
         'date_add',
-        'date_update',
-        'status',
-        'poste',
-        'date_add',
-        'date_update',
+        
         'status',
     )
     raw_id_fields = ('social',)
