@@ -75,7 +75,7 @@ data = {
 }
 
 def index(request):
-    return render(request, 'pages/resto/index.html', data, context=RequestContext(request))
+    return render(request, 'pages/resto/index.html', data)
 
 def menu(request):
     return render(request, 'pages/resto/menu.html')
