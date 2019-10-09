@@ -1,37 +1,22 @@
 from django.contrib import admin
-
-# Register your models here.
-# vim: set fileencoding=utf-8 :
-from django.contrib import admin
-
 from . import models
 
 
 class ReservationAdmin(admin.ModelAdmin):
 
     list_display = (
-        'id',
         'nom',
         'email',
         'numero',
         'date',
         'heure',
         'personne',
+        'message',
         'date_add',
         'date_update',
         'status',
     )
     list_filter = (
-        'date',
-        'date_add',
-        'date_update',
-        'status',
-        'nom',
-        'email',
-        'numero',
-        'date',
-        'heure',
-        'personne',
         'date_add',
         'date_update',
         'status',

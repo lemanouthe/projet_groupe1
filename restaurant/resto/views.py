@@ -96,3 +96,11 @@ def giveDay(request):
 
 def home(request):
     return render(request,'pages/resto/index.html')
+def home(request):
+    return render(request, 'pages/resto/index.html')
+
+def menu(request):
+    return render(request, 'pages/resto/menu.html')
+
+def team(request):
+    return render(request, 'pages/resto/team.html')

@@ -32,6 +32,28 @@
     <!-- Modernizr JS for IE8 support of HTML5 elements and media queries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 
+    <style>
+    .pace {
+        -webkit-pointer-events: none;
+        pointer-events: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        }
+    .pace-inactive {
+        display: none;
+        }
+    .pace .pace-progress {
+        background: #af63de;
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        right: 100%;
+        width: 100%;
+        height: 2px;
+        } 
+    </style>
+
 </head>
 <body data-spy="scroll" data-target="#navbar" class="static-layout">
 	<div id="side-nav" class="sidenav">
@@ -51,7 +73,6 @@
 	<a href="javascript:void(0)" id="side-search-close">&times;</a>
         <div class="sidenav-content">
             <form action="">
-
                 <div class="input-group md-form form-sm form-2 pl-0">
                 <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search">
                 <div class="input-group-append">
@@ -68,67 +89,67 @@
     </div>
 
 <div id="canvas-overlay"></div>
-	<div class="boxed-page">
+	<div class="boxed-page" id="my-app">
 		<nav id="navbar-header" class="navbar navbar-expand-lg">
-    <div class="container">
-        <a class="navbar-brand navbar-brand-center d-flex align-items-center p-0 only-mobile" href="/">
-            <img src="/static/img/logo.png" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="lnr lnr-menu"></span>
-        </button>
+            <div class="container">
+                <a class="navbar-brand navbar-brand-center d-flex align-items-center p-0 only-mobile" href="/">
+                    <img src="/static/img/logo.png" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="lnr lnr-menu"></span>
+                </button>
 
-        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-            <ul class="navbar-nav d-flex justify-content-between">
-                <li class="nav-item only-desktop">
-                    <a class="nav-link" id="side-nav-open" href="#">
-                        <span class="lnr lnr-menu"></span>
-                    </a>
-                </li>
-                <div class="d-flex flex-lg-row flex-column">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                    <ul class="navbar-nav d-flex justify-content-between">
+                        <li class="nav-item only-desktop">
+                            <a class="nav-link" id="side-nav-open" href="#">
+                                <span class="lnr lnr-menu"></span>
+                            </a>
+                        </li>
+                        <div class="d-flex flex-lg-row flex-column">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.html">About</a>
+                            </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Special Dishes
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="special-dishes.html">Beef Steak Sauce</a>
-                          <a class="dropdown-item" href="special-dishes.html">Salmon Zucchini</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Special Dishes
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="special-dishes.html">Beef Steak Sauce</a>
+                                <a class="dropdown-item" href="special-dishes.html">Salmon Zucchini</a>
+                                </div>
+                            </li>
                         </div>
-                    </li>
-                </div>
-            </ul>
-            
-            <a class="navbar-brand navbar-brand-center d-flex align-items-center only-desktop" href="#">
-                <img src="/static/img/logo.png" alt="">
-            </a>
-            <ul class="navbar-nav d-flex justify-content-between">
-                <div class="d-flex flex-lg-row flex-column">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="menu.html">Menu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="team.html">Team</a>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="reservation.html">Reservation</a>
-                    </li>
-                </div>
-                <li class="nav-item">
-                    <a id="side-search-open" class="nav-link" href="#">
-                        <span class="lnr lnr-magnifier"></span>
+                    </ul>
+                    
+                    <a class="navbar-brand navbar-brand-center d-flex align-items-center only-desktop" href="#">
+                        <img src="/static/img/logo.png" alt="">
                     </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+                    <ul class="navbar-nav d-flex justify-content-between">
+                        <div class="d-flex flex-lg-row flex-column">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="menu.html">Menu</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="team.html">Team</a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="reservation.html">Reservation</a>
+                            </li>
+                        </div>
+                        <li class="nav-item">
+                            <a id="side-search-open" class="nav-link" href="#">
+                                <span class="lnr lnr-magnifier"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
         
         {% block content %}
@@ -204,18 +225,49 @@
 	<script src="/static/js/jquery-3.2.1.min.js"></script>
 	<script src="/static/vendor/bootstrap/popper.min.js"></script>
 	<script src="/static/vendor/bootstrap/bootstrap.min.js"></script>
-	<!-- <script src="/static/vendor/select2/select2.min.js "></script> -->
-	<!-- <script src="/static/vendor/owlcarousel/owl.carousel.min.js"></script> -->
-	<!-- <script src="https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js"></script> -->
-	<!-- <script src="/static/vendor/stellar/jquery.stellar.js" type="text/javascript" charset="utf-8"></script> -->
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script> -->
+	<script src="/static/vendor/select2/select2.min.js "></script>
+	<script src="/static/vendor/owlcarousel/owl.carousel.min.js"></script>
+	<script src="https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js"></script>
+	{% comment %} <script src="/static/vendor/stellar/jquery.stellar.js" type="text/javascript" charset="utf-8"></script> {% endcomment %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
 
 	<!-- Main JS -->
-    <!-- <script src="/static/js/app.min.js "></script> -->
-    <!-- <script src="/static/js/vue.js" ></script> -->
-    <!-- <script src="/static/js/axios.js" ></script> -->
-    {% block javascript %}
+	<script src="/static/js/app.min.js "></script>
 
-    {% endblock %}
+    <script src="/static/js/view.js"></script>
+    <script src="/static/js/axios.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/http-vue-loader@1.4.1/src/httpVueLoader.min.js"></script>
+
+
+    <script>
+        new Vue({
+            el: '#my-app',
+            data: {
+                plats: [],
+            },
+            components: {
+                'my-compo': httpVueLoader('/static/components/my-compo.vue'),
+                'team-compo': httpVueLoader('/static/components/special.vue'),
+                'menu-compo': httpVueLoader('/static/components/menu.vue'),
+            },
+            delimiters: ["${", "}"],
+            mounted() {
+                this.getplats()
+            },
+            methods: {
+                getplats: function() {
+                    axios.get('http://127.0.0.1:8000/plats/')
+                        .then(response => {
+                            console.log(response.data)
+                            this.plats = response.data
+                            
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        })
+                },
+            },
+        });
+    </script>
 </body>
 </html>

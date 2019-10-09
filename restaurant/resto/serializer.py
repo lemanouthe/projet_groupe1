@@ -34,7 +34,8 @@ class PlaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Place
         fields = '__all__'
-    depth = 1
+        
+        depth = 1
 
 class SocialSerializer(serializers.ModelSerializer):
     social_personnel = PersonnelSerializer(many=True,read_only=True)
