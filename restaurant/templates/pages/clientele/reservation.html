@@ -18,7 +18,8 @@
                                 {{ reserv.sous_titre }}
                             </h2>
                         </div>
-                       
+                        {% endif %}
+                        {% endfor %}
                     <form method="post" name="contact-us" enctype="multipart/form-data" action="">
                         {% csrf_token %}
                         <div class="row">
@@ -33,8 +34,8 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" name="date" data-target="#datetimepicker4" placeholder="Date" />
-                                    <div class="input-group-append form_date" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                                    <input type="date" class="form-control datepicker-input" name="date" data-target="#datepicker4" placeholder="Date" />
+                                    <div class="input-group-append form_date" data-target="#datepicker4" data-toggle="datepicker">
                                         <div class="input-group-text">
                                             <span class="lnr lnr-calendar-full"></span>
                                         </div>
@@ -43,9 +44,9 @@
                             </div>
 
                             <div class="col-md-6 form-group">
-                                <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" name="heure" data-target="#datetimepicker3" placeholder="Time" />
-                                    <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
+                                <div class="input-group time" id="timepicker3" data-target-input="nearest">
+                                    <input type="time" class="form-control timepicker-input" name="heure" data-target="#timepicker3" placeholder="Time" />
+                                    <div class="input-group-append" data-target="#timepicker3" data-toggle="timepicker">
                                         <div class="input-group-text">
                                             <span class="lnr lnr-clock"></span>
                                         </div>
@@ -78,7 +79,6 @@
         
     </div>
 </section>
-{% endif %}
-{% endfor %}
+
 {% endblock content %}
     

@@ -31,7 +31,7 @@ class TemoignageViewset(viewsets.ModelViewSet):
 def reservation(request):
 
     from configuration.models import  ReserveConfig
-
+    
     nom = request.POST.get('nom')
     email = request.POST.get('email')
     numero = request.POST.get('numero')
@@ -42,13 +42,17 @@ def reservation(request):
     
     # print(nom,email,numero,date,heure,personne,message)
     try:
-        validate_email(email)
-        is_email=True
-        if is_email and nom is not None and numero is not None and date is not None and heure is not None and personne is not None and message is not None:
-            h = Reservation(nom=nom,email=email,numero=numero,date=date,heure=heure,personne=personne,message=message)
-            h.save()
+       validate_email(email)
+       is_email = True
     except:
-        print('remplir ce formulaire')
+        pass
+    if  request.method == "POST":
+        if  nom == "" and email ==""  and numero =="" and date =="" and heure =="" and personne =="" and message == "":
+            messages.warning(request, "Erreur Veillez Remplie Correctement Tous les Champs")
+        else:
+            sms = Reservation(nom=nom,email=email,numero=numero,date=date,heure=heure,personne=personne,message=message)
+            sms.save()
+            
 
     reservConf = ReserveConfig.objects.filter(status=True)
 
