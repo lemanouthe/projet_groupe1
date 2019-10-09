@@ -1,5 +1,7 @@
 from django.db import models
-from configuration.models import Social
+from configuration.models import Social,Day
+from django.utils.timezone import now
+from datetime import datetime, date, time
 # Create your models here.
 
 class Category(models.Model):
@@ -42,11 +44,20 @@ class Plat(models.Model):
     prix = models.FloatField()
     ingredient = models.ManyToManyField(Ingredient,related_name="ingrediant_plat")
     image = models.ImageField(upload_to='restaurant/plat')
+    days = models.ManyToManyField(Day,related_name='day_plat')
     speciale = models.BooleanField(default=False)
-    today = models.BooleanField()
     date_add =  models.DateTimeField(auto_now_add=True)
     date_update =  models.DateTimeField(auto_now=True)
     status =  models.BooleanField(default=True)
+    @property
+    def today(self):
+        is_today=False
+        test= 'bonjour'
+        jour = now().strftime('%A')
+        if jour.lower() in [ d.lower() for d in self.days.all()]:
+            is_today=True
+        print('is today plat ',is_today)
+        return is_today
     def __str__(self):
         return self.nom
 
