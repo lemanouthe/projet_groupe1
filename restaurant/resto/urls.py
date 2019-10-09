@@ -16,14 +16,9 @@ app_name='resto'
 
 urlpatterns = [
     path('fake',giveSocial,name='fake'),
-<<<<<<< Updated upstream
     path('restaurant/', views.index, name='index'),
     path('menu/', views.menu, name='menu'),
     path('special/', views.special, name='special'),
     path('team/', views.team, name='team'),
-=======
-    # path('', views.index, name='index'),
-    path('menu', views.menu, name='menu'),    
->>>>>>> Stashed changes
 ]
 urlpatterns += router.urls
