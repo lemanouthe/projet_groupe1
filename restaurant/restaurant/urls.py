@@ -28,6 +28,7 @@ urlpatterns = [
     # path('api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('',include('resto.urls')),
+    path('resto',include('resto.urls')),
     path('admin/', admin.site.urls),
     path('config/',include('configuration.urls')),
     path('contact/',include('contact.urls')), 
