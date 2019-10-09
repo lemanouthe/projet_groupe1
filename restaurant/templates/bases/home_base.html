@@ -234,7 +234,7 @@
 	<script src="/static/js/app.min.js "></script>
 
     <script src="/static/js/view.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/static/js/axios.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/http-vue-loader@1.4.1/src/httpVueLoader.min.js"></script>
 
 
@@ -242,20 +242,7 @@
         new Vue({
             el: '#my-app',
             data: {
-                name: '',
-                email: '',
-                phone: '',
-                date: '',
-                time: '',
-                person: '',
-                options: [
-                    { text: '1', value: '1' },
-                    { text: '2', value: '2' },
-                    { text: '3', value: '3' },
-                    { text: '4', value: '4' },
-                    { text: '5', value: '5' }
-                ],
-                message: '',
+                plats: [],
             },
             components: {
                 'my-compo': httpVueLoader('/static/components/my-compo.vue'),
@@ -263,10 +250,21 @@
                 'menu-compo': httpVueLoader('/static/components/menu.vue'),
             },
             delimiters: ["${", "}"],
+            mounted() {
+                this.getplats()
+            },
             methods: {
-                getuser: function() {
-                    axios.post()
-                }
+                getplats: function() {
+                    axios.get('http://127.0.0.1:8000/plats/')
+                        .then(response => {
+                            console.log(response.data)
+                            this.plats = response.data
+                            
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        })
+                },
             },
         });
     </script>

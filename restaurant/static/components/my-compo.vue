@@ -10,8 +10,12 @@
 </template>
 <script>
     module.exports = {
+        data: {
+            
+        },
        components: {
             'menu-compo': httpVueLoader('/static/components/menu.vue'),
         },
+        
     }
 </script>

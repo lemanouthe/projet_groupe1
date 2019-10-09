@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.timezone import now
+from django.contrib.auth.models import User
 from datetime import datetime, date, time
 import re
 
@@ -15,6 +16,7 @@ class Reservation(models.Model):
         date = models.DateField()
         heure = models.TimeField()
         personne = models.IntegerField()
+        message = models.TextField(null=True)
         date_add =  models.DateTimeField(auto_now_add=True)
         date_update =  models.DateTimeField(auto_now=True)
         status =  models.BooleanField(default=True)
