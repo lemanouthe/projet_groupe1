@@ -96,10 +96,12 @@ def giveDay(request):
 
 def index(request):
 
-    from configuration.models import About
+    from configuration.models import About,Presentation
     about = About.objects.all()
+    presentation = Presentation.objects.all()
     data={
         'about':about,
+        'presentation':presentation,
     }
     return render(request,'pages/resto/index.html',data)
 def menu(request):
