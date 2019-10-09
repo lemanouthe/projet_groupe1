@@ -29,10 +29,9 @@ urlpatterns = [
     # path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('',include('resto.urls')),
     path('admin/', admin.site.urls),
-    path('client/',include('clientel.urls')),
     path('config/',include('configuration.urls')),
-    path('contact/',include('contact.urls')),
-    path('resto/',include('resto.urls')),    
+    path('contact/',include('contact.urls')), 
+    path('reservation/', include('clientel.urls')), 
 ]
 
 if settings.DEBUG:

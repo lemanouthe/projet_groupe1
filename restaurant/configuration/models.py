@@ -20,8 +20,8 @@ class Day(models.Model):
 class WorkingHour(models.Model):
     # TODO: Define fields here
     jour = models.ForeignKey(Day,on_delete=models.CASCADE,related_name='day_working')
-    start_hour = models.CharField(max_length=50)
-    end_hour = models.CharField(max_length=50)
+    start_hour = models.TimeField(max_length=50)
+    end_hour = models.TimeField(max_length=50)
     status = models.BooleanField(default=True)
     date_add = models.DateTimeField(auto_now_add=True)
     date_upd = models.DateTimeField(auto_now=True)
@@ -77,7 +77,7 @@ class About(models.Model):
 
     nom = models.CharField(max_length=255)
     description = models.TextField()
-    image = models.ImageField(upload_to='image_about', )
+    image = models.ImageField(upload_to='image_about')
     status = models.BooleanField(default=False)
     date_add = models.DateTimeField(auto_now_add=True)
     date_udp =  models.DateTimeField(auto_now =True)
@@ -90,7 +90,7 @@ class About(models.Model):
 
     def __str__(self):
         """Unicode representation of About."""
-        pass
+        return self.nom
 
 
 class Social(models.Model):

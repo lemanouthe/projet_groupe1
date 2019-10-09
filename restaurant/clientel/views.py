@@ -29,6 +29,9 @@ class TemoignageViewset(viewsets.ModelViewSet):
     
     
 def reservation(request):
+
+    from configuration.models import  ReserveConfig
+
     nom = request.POST.get('nom')
     email = request.POST.get('email')
     numero = request.POST.get('numero')
@@ -46,5 +49,12 @@ def reservation(request):
             h.save()
     except:
         print('remplir ce formulaire')
-    
-    return render(request, 'pages/clientele/reservation.html')
+
+    reservConf = ReserveConfig.objects.filter(status=True)
+
+
+    data = {
+        'reservConf': reservConf,
+    }
+
+    return render(request, 'pages/clientele/reservation.html', data)

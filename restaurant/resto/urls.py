@@ -12,11 +12,16 @@ router.register(r'postes', PosteViewset, basename='poste')
 router.register(r'personnels', PersonnelViewset, basename='personnel')
 from . import views
 
+from . import views
+
+app_name='resto'
 
 urlpatterns = [
     path('fake',giveSocial,name='fake'),
-    path('home', views.home, name='home'),
-    path('menus', views.menu, name='menu'),
-    path('team', views.team, name='team'),           
+
+    path('restaurant/', views.index, name='index'),
+    path('menu/', views.menu, name='menu'),
+    path('special/', views.special, name='special'),
+    path('team/', views.team, name='team'),
 ]
 urlpatterns += router.urls
