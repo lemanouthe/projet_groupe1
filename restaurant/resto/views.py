@@ -8,6 +8,7 @@ from django.http import	JsonResponse
 from rest_framework import filters
 from django.shortcuts import render
 import faker
+from configuration.models import About,Presentation
 
 # class ReadOnly(BasePermission):
 #     def has_permission(self, request, view):
@@ -102,8 +103,6 @@ def index(request):
 ################### JINJA views #######################
 
 def index(request):
-
-    from configuration.models import About,Presentation
     about = About.objects.all()
     presentation = Presentation.objects.all()
     data={
