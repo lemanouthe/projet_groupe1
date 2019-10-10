@@ -43,34 +43,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 
     <style>
-    .pace {
-        -webkit-pointer-events: none;
-        pointer-events: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
+        .loader {
+            border : 16px solid #f3f3f3;
+            border-radius : 50%;
+            border-top : 16px solid blue;
+            border-bottom: 16px solid blue;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
         }
-    .pace-inactive {
-        display: none;
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
         }
-    .pace .pace-progress {
-        background: #af63de;
-        position: fixed;
-        z-index: 2000;
-        top: 0;
-        right: 100%;
-        width: 100%;
-        height: 2px;
-        } 
+        @keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
     </style>
 
 </head>
 <body data-spy="scroll" data-target="#navbar" class="static-layout">
-        <div class="preloader-wrapper">
-                <div class="preloader">
-                    <img src="/static/img/preloader.gif" alt="NILA">
-                </div>
-            </div>
 	<div id="side-nav" class="sidenav">
         <a href="javascript:void(0)" id="side-nav-close">&times;</a>
 
@@ -105,71 +99,74 @@
 
 <div id="canvas-overlay"></div>
 	<div class="boxed-page" id="my-app">
-		<nav id="navbar-header" class="navbar navbar-expand-lg">
-    <div class="container">
-        {% for item in presentation %}
-        <a class="navbar-brand navbar-brand-center d-flex align-items-center p-0 only-mobile" href="#">
-            <img src="{{ item.image.url }}" alt="">
-        </a>
-        {% endfor %}
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="lnr lnr-menu"></span>
-        </button>
+        <div class="loader" v-if="loader"></div>
+        <div class="container-full" v-if="contain">
+            <nav id="navbar-header" class="navbar navbar-expand-lg">
+            <div class="container">
+                {% for item in presentation %}
+                <a class="navbar-brand navbar-brand-center d-flex align-items-center p-0 only-mobile" href="#">
+                    <img src="{{ item.image.url }}" alt="">
+                </a>
+                {% endfor %}
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="lnr lnr-menu"></span>
+                </button>
 
-        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-            <ul class="navbar-nav d-flex justify-content-between">
-                <li class="nav-item only-desktop">
-                    <a class="nav-link" id="side-nav-open" href="#">
-                        <span class="lnr lnr-menu"></span>
-                    </a>
-                </li>
-                <div class="d-flex flex-lg-row flex-column">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'resto:index' %}">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'configuration:about' %}">About</a>
-                    </li>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                    <ul class="navbar-nav d-flex justify-content-between">
+                        <li class="nav-item only-desktop">
+                            <a class="nav-link" id="side-nav-open" href="#">
+                                <span class="lnr lnr-menu"></span>
+                            </a>
+                        </li>
+                        <div class="d-flex flex-lg-row flex-column">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'resto:index' %}">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'configuration:about' %}">About</a>
+                            </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Special Dishes
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="{% url 'resto:special' %}">Beef Steak Sauce</a>
-                          <a class="dropdown-item" href="{% url 'resto:special' %}">Salmon Zucchini</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Special Dishes
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{% url 'resto:special' %}">Beef Steak Sauce</a>
+                                <a class="dropdown-item" href="{% url 'resto:special' %}">Salmon Zucchini</a>
+                                </div>
+                            </li>
                         </div>
-                    </li>
-                </div>
-            </ul>
-            
-            <a class="navbar-brand navbar-brand-center d-flex align-items-center only-desktop" href="#">
-                <img src="/static/img/logo.png" alt="">
-            </a>
-            <ul class="navbar-nav d-flex justify-content-between">
-                <div class="d-flex flex-lg-row flex-column">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'resto:menu' %}">Menu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'resto:team' %}">Team</a>
-                    </li>
+                    </ul>
+                    
+                    <a class="navbar-brand navbar-brand-center d-flex align-items-center only-desktop" href="#">
+                        <img src="/static/img/logo.png" alt="">
+                    </a>
+                    <ul class="navbar-nav d-flex justify-content-between">
+                        <div class="d-flex flex-lg-row flex-column">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'resto:menu' %}">Menu</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'resto:team' %}">Team</a>
+                            </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="{% url 'reservation' %}">Reservation</a>
-                    </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="{% url 'reservation' %}">Reservation</a>
+                            </li>
+                        </div>
+                    </div>
+                </nav>
+            
+            {% block content %}
+                
+            {% endblock content %}
+                
                 </div>
             </div>
-        </nav>
+        </div>
+    <!-- End of Reservation Section -->		
         
-        {% block content %}
-            
-        {% endblock content %}
-            
-    
-    </div>
-<!-- End of Reservation Section -->		
-    
 
 <footer class="mastfoot pb-5 bg-white section-padding pb-0">
     <div class="inner container">
@@ -262,29 +259,60 @@
             el: '#my-app',
             data: {
                 plats: [],
+                perso: [],
+                ingredient: [],
+                loader: true,
+                contain: false,
             },
             components: {
                 'my-compo': httpVueLoader('/static/components/my-compo.vue'),
                 'team-compo': httpVueLoader('/static/components/special.vue'),
                 'menu-compo': httpVueLoader('/static/components/menu.vue'),
-                'dishes1-compo': httpVueLoader('/static/components/dishes1.vue'),
-                'dishes2-compo': httpVueLoader('/static/components/dishes2.vue'),
+                'dishes-compo': httpVueLoader('/static/components/dishes.vue'),
+                'dishe-compo': httpVueLoader('/static/components/dishe.vue'),
             },
             delimiters: ["${", "}"],
             mounted() {
                 this.getplats()
+                this.getpersonnel()
+                this.getingredient()
             },
             methods: {
                 getplats: function() {
                     axios.get('http://127.0.0.1:8000/plats/')
                         .then(response => {
                             console.log(response.data)
-                            this.plats = response.data
-                            
+                            this.plats = response.data.slice(1, 4)
+                            this.loader = false
+                            this.contain = true
                         })
                         .catch((err) => {
                             console.log(err);
                         })
+                },
+                 getpersonnel: function() {
+                    axios.get('http://127.0.0.1:8000/personnels/')
+                        .then(response => {
+                            console.log(response.data)
+                            this.perso = response.data.slice(1, 4)
+                            this.loader = false
+                            this.contain = true
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        })
+                },
+                getingredient: function() {
+                axios.get('http://127.0.0.1:8000/ingredients/')
+                    .then(response => {
+                        console.log(response.data)
+                        this.ingredient = response.data.slice(1, 4)
+                        this.loader = false
+                            this.contain = true
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    })
                 },
             },
         });

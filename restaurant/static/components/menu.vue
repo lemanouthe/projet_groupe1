@@ -19,6 +19,6 @@
 
 <script>
     module.exports = {
-       
+        props: ['item'],
     }
 </script>

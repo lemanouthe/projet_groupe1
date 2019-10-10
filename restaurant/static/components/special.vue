@@ -1,10 +1,10 @@
 <template>
     <div class="col-md-4">
         <div class="team-card mb-5">
-            <img class="img-fluid" src="/static/img/chef-1.jpg" alt="">
+            <img class="img-fluid" :src="items.photo" alt="">
             <div class="team-desc">
-                <h4 class="mb-0">Aaron Patel</h4>
-                <p class="mb-1">CEO</p>
+                <h4 class="mb-0">${ items.nom.substring(0,20) }</h4>
+                <p class="mb-1">${ items.poste.nom.substring(0,10) }</p>
                 <ul class="list-inline mb-0 team-social-links">
                     <li class="list-inline-item">
                         <a href="#">
@@ -34,6 +34,7 @@
 
 <script>
     module.exports = {
-       
+       props: ['items'],
+       delimiters: ["${", "}"],
     }
 </script>

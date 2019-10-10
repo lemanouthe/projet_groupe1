@@ -29,7 +29,7 @@ class PlatAdmin(admin.ModelAdmin):
 
     list_display = (
         'id',
-        'categorie',
+        # 'categorie',
         'nom',
         'prix',
         'image',
@@ -70,9 +70,8 @@ class personnelAdmin(admin.ModelAdmin):
         'status',
     )
     list_filter = (
-        'poste',
+        'photo',
         'date_add',
-        
         'status',
     )
     raw_id_fields = ('social',)

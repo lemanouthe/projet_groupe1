@@ -2,6 +2,7 @@ from rest_framework import viewsets,filters
 from rest_framework.permissions import IsAuthenticated,IsAdminUser,IsAuthenticatedOrReadOnly,BasePermission,SAFE_METHODS
 from .serializer import ReservationSerializer, TemoignageSerializer
 from .models import *
+from configuration.models import  ReserveConfig
 from django.shortcuts import render
 from django.core.validators import validate_email
 from django.http import HttpResponse
@@ -29,9 +30,8 @@ class TemoignageViewset(viewsets.ModelViewSet):
     
     
 def reservation(request):
-
-    from configuration.models import  ReserveConfig
-
+    reservConf = ReserveConfig.objects.filter(status=True)
+    
     nom = request.POST.get('nom')
     email = request.POST.get('email')
     numero = request.POST.get('numero')
@@ -44,13 +44,14 @@ def reservation(request):
     try:
         validate_email(email)
         is_email=True
-        if is_email and nom is not None and numero is not None and date is not None and heure is not None and personne is not None and message is not None:
-            h = Reservation(nom=nom,email=email,numero=numero,date=date,heure=heure,personne=personne,message=message)
-            h.save()
     except:
-        print('remplir ce formulaire')
-
-    reservConf = ReserveConfig.objects.filter(status=True)
+        pass
+    if request.method == "POST":
+        if nom == "" and email == "" and numero == "" and date == "" and heure == "" and personne == "" and message == "":
+            messages.warning(request, "Erreur veuilllez remplir le formulaire")
+        else:
+            h = Reservation(nom=nom, email=email, numero=numero, date=date, heure=heure, personne=personne, message=message)
+            h.save()
 
 
     data = {

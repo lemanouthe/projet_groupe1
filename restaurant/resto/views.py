@@ -101,5 +101,6 @@ def menu(request):
 
 def team(request):
     return render(request, 'pages/resto/team.html')
+
 def special(request):
-    return render(request,'pages/resto/index.html')
+    return render(request,'pages/resto/special_dishes.html')

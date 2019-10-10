@@ -15,7 +15,6 @@ app_name='resto'
 
 urlpatterns = [
     path('fake',giveSocial,name='fake'),
-
     path('restaurant/', views.index, name='index'),
     path('menu/', views.menu, name='menu'),
     path('special/', views.special, name='special'),

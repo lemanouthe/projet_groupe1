@@ -14,7 +14,11 @@
                     </h2>
                 </div>
                 <div class="row">
-                   <team-compo></team-compo>
+                   <team-compo
+                        v-for="pers in perso"
+                        v-bind:items="pers"
+                        v-bind:key="pers.id"
+                   ></team-compo>
                 </div>
             </div>
         </div>

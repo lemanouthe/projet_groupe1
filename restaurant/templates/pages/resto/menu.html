@@ -17,17 +17,19 @@
                     </div>
                 </div>
                 <div class="row">
-                    <my-compo></my-compo>
+                    <my-compo
+                        v-for="plat in plats"
+                        v-bind:item="plat"
+                        v-bind:key="plat.id"
+                    >
+                        v-for="ing in ingrdient"
+                        v-bind:items="ing"
+                        v-bind:key="ing.id"
+                    </my-compo>
                 </div>
             </div>
         </div>
     </div>
     </section>
-
-    <script src="/static/js/view.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-        
-    </script>
 {% endblock content %}
     
