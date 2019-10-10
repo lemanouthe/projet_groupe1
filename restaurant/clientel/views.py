@@ -52,3 +52,4 @@ def reservation(request):
             sms = Reservation(nom=nom,email=email,numero=numero,date=date,heure=heure,personne=personne,message=message)
             sms.save()
             
+    return render(request, 'pages/clientele/reservation.html')
