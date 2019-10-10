@@ -18,13 +18,10 @@
                 </div>
                 <div class="row">
                     <my-compo
-                        v-for="plat in plats"
-                        v-bind:item="plat"
-                        v-bind:key="plat.id"
+                        v-for="cat in category"
+                        v-bind:item="cat"
+                        v-bind:key="cat.id"
                     >
-                        v-for="ing in ingrdient"
-                        v-bind:items="ing"
-                        v-bind:key="ing.id"
                     </my-compo>
                 </div>
             </div>
