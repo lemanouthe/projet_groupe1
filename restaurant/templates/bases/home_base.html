@@ -84,90 +84,63 @@
 </head>
 <body data-spy="scroll" data-target="#navbar" class="static-layout">
 	<div id="side-nav" class="sidenav">
-        <a href="javascript:void(0)" id="side-nav-close">&times;</a>
-
-        <div class="sidenav-content">
-            <p>
-                Kuncen WB1, Wirobrajan 10010, DIY
-            </p>
-            <p>
-                <span class="fs-16 primary-color">(+68) 120034509</span>
-            </p>
-            <p>info@yourdomain.com</p>
-        </div>
-    </div>
+    	<a href="javascript:void(0)" id="side-nav-close">&times;</a>
+    	
+    	<div class="sidenav-content">
+    		<p>
+    			Kuncen WB1, Wirobrajan 10010, DIY
+    		</p>
+    		<p>
+    			<span class="fs-16 primary-color">(+68) 120034509</span>
+    		</p>
+    		<p>info@yourdomain.com</p>
+    	</div>
+    </div>	
     <div id="side-search" class="sidenav">
-	<a href="javascript:void(0)" id="side-search-close">&times;</a>
-        <div class="sidenav-content">
-            <form action="">
-                <div class="input-group md-form form-sm form-2 pl-0">
-                <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="input-group-text red lighten-3" id="basic-text1">
-                        <i class="fas fa-search text-grey" aria-hidden="true"></i>
-                    </button>
-                </div>
-                </div>
+    	<a href="javascript:void(0)" id="side-search-close">&times;</a>
+    	<div class="sidenav-content">
+    		<form action="">
 
-            </form>
-        </div>
-	
- 	
+    			<div class="input-group md-form form-sm form-2 pl-0">
+    			  <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search">
+    			  <div class="input-group-append">
+    			    <button class="input-group-text red lighten-3" id="basic-text1">
+    			    	<i class="fas fa-search text-grey" aria-hidden="true"></i>
+    			    </button>
+    			  </div>
+    			</div>
+
+    		</form>
+    	</div>
     </div>
-
-<div id="canvas-overlay"></div>
 	<div class="boxed-page" id="my-app">
         <div class="loader" v-if="loader"></div>
         <div class="container-full" v-if="contain">
             <nav id="navbar-header" class="navbar navbar-expand-lg">
-            <div class="container">
-                {% for item in presentation %}
-                <a class="navbar-brand navbar-brand-center d-flex align-items-center p-0 only-mobile" href="#">
-                    <img src="{{ item.image.url }}" alt="">
-                </a>
-                {% endfor %}
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="lnr lnr-menu"></span>
-                </button>
-
-                <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-                    <ul class="navbar-nav d-flex justify-content-between">
-                        <li class="nav-item only-desktop">
-                            <a class="nav-link" id="side-nav-open" href="#">
-                                <span class="lnr lnr-menu"></span>
-                            </a>
-                        </li>
-                        <div class="d-flex flex-lg-row flex-column">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{% url 'resto:index' %}">Home <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'configuration:about' %}">About</a>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Special Dishes
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{% url 'resto:special' %}">Beef Steak Sauce</a>
-                                <a class="dropdown-item" href="{% url 'resto:special' %}">Salmon Zucchini</a>
-                                </div>
-                            </li>
-                        </div>
-                    </ul>
-                    
-                    <a class="navbar-brand navbar-brand-center d-flex align-items-center only-desktop" href="#">
-                        <img src="/static/img/logo.png" alt="">
+                <div class="container">
+                    {% for item in presentation %}
+                    <a class="navbar-brand navbar-brand-center d-flex align-items-center p-0 only-mobile" href="#">
+                        <img src="{{ item.image.url }}" alt="">
                     </a>
-                    <ul class="navbar-nav d-flex justify-content-between">
-                        <div class="d-flex flex-lg-row flex-column">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{% url 'resto:menu' %}">Menu</a>
+                    {% endfor %}
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="lnr lnr-menu"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                        <ul class="navbar-nav d-flex justify-content-between">
+                            <li class="nav-item only-desktop">
+                                <a class="nav-link" id="side-nav-open" href="#">
+                                    <span class="lnr lnr-menu"></span>
+                                </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'resto:team' %}">Team</a>
-                            </li>
+                            <div class="d-flex flex-lg-row flex-column">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{% url 'resto:index' %}">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'configuration:about' %}">About</a>
+                                </li>
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="{% url 'reservation' %}">Reservation</a>
@@ -180,8 +153,13 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-        </nav>
+            </nav>
+            {% block content %}
+                
+            {% endblock content %}   
+        </div>
+    </div>
+    <!-- End of Reservation Section -->		
         
 
 <footer class="mastfoot pb-5 bg-white section-padding pb-0">
@@ -277,6 +255,7 @@
                 plats: [],
                 perso: [],
                 ingredient: [],
+                category:[],
                 loader: true,
                 contain: false,
             },
@@ -290,8 +269,9 @@
             delimiters: ["${", "}"],
             mounted() {
                 this.getplats()
-                this.getpersonnel()
                 this.getingredient()
+                this.getpersonnel()
+                this.getcategories()
             },
             methods: {
                 getplats: function() {
@@ -306,7 +286,19 @@
                             console.log(err);
                         })
                 },
-                 getpersonnel: function() {
+                getcategories: function() {
+                    axios.get('http://localhost:8000/category/')
+                        .then(response => {
+                            console.log(response.data)
+                            this.category = response.data.slice(1, 4)
+                            this.loader = false
+                            this.contain = true
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        })
+                },
+                getpersonnel: function() {
                     axios.get('http://127.0.0.1:8000/personnels/')
                         .then(response => {
                             console.log(response.data)

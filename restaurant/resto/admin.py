@@ -39,8 +39,9 @@ class PlatAdmin(admin.ModelAdmin):
         'status',
     )
     list_filter = (
-        'categorie',
-        'speciale',
+        # 'categorie',
+        # 'speciale',
+        'image',
         'date_add',
         'status',
     )
