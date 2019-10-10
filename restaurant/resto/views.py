@@ -92,11 +92,7 @@ def giveDay(request):
         plt.save()
     return JsonResponse({'succees':True})
 
-data = {
-    'present': present,
-    'reservat': reservat,
-    'about': about,
-}
+
 def home(request):
     return render(request, 'pages/resto/index.html', data, context=RequestContext(request))
 
