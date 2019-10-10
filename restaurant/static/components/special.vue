@@ -7,25 +7,11 @@
                 <p class="mb-1">${ items.poste.nom.substring(0,10) }</p>
                 <ul class="list-inline mb-0 team-social-links">
                     <li class="list-inline-item">
-                        <a href="#">
-                            <i class="fab fa-facebook-f"></i>
+                        <a href="${ items.social.lien }">
+                            <i class="${ items.social.name }"></i>
                         </a>
                     </li>
-                    <li class="list-inline-item">
-                        <a href="#">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">
-                            <i class="fab fa-google-plus-g"></i>
-                        </a>
-                    </li>
+                    
                 </ul>
             </div>
         </div>
