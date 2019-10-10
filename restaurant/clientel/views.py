@@ -42,20 +42,13 @@ def reservation(request):
     
     # print(nom,email,numero,date,heure,personne,message)
     try:
-        validate_email(email)
-        is_email=True
+       is_email = True
     except:
         pass
-    if request.method == "POST":
-        if nom == "" and email == "" and numero == "" and date == "" and heure == "" and personne == "" and message == "":
-            messages.warning(request, "Erreur veuilllez remplir le formulaire")
+    if  request.method == "POST":
+        if  nom == "" and email ==""  and numero =="" and date =="" and heure =="" and personne =="" and message == "":
+            messages.warning(request, "Erreur Veillez Remplie Correctement Tous les Champs")
         else:
-            h = Reservation(nom=nom, email=email, numero=numero, date=date, heure=heure, personne=personne, message=message)
-            h.save()
-
-
-    data = {
-        'reservConf': reservConf,
-    }
-
-    return render(request, 'pages/clientele/reservation.html', data)
+            sms = Reservation(nom=nom,email=email,numero=numero,date=date,heure=heure,personne=personne,message=message)
+            sms.save()
+            

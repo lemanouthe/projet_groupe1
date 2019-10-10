@@ -14,7 +14,7 @@ class Reservation(models.Model):
         nom = models.CharField(max_length=160)
         email = models.EmailField()
         numero = models.CharField(max_length=160)
-        date = models.DateField()
+        date = models.DateTimeField()
         heure = models.TimeField()
         personne = models.IntegerField()
         message = models.TextField(null=True)

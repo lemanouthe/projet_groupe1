@@ -95,7 +95,15 @@ def giveDay(request):
 ################### JINJA views #######################
 
 def index(request):
-    return render(request,'pages/resto/index.html')
+
+    from configuration.models import About,Presentation
+    about = About.objects.all()
+    presentation = Presentation.objects.all()
+    data={
+        'about':about,
+        'presentation':presentation,
+    }
+    return render(request,'pages/resto/index.html',data)
 def menu(request):
     return render(request, 'pages/resto/menu.html')
 
