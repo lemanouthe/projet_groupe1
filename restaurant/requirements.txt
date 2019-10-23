@@ -14,4 +14,4 @@ djangorestframework-simplejwt==4.3.0
 drf-dynamic-fields==0.3.1
 drf-yasg==1.17.0
 Faker==2.0.2
-Pillow==6.1.0
+Pillow==6.2.0
